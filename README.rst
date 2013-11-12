@@ -2,15 +2,8 @@
 meter_read
 ===============================
 
-.. image:: https://badge.fury.io/py/meter_read.png
-    :target: http://badge.fury.io/py/meter_read
-
 .. image:: https://travis-ci.org/aequitas/meter_read.png?branch=master
         :target: https://travis-ci.org/aequitas/meter_read
-
-.. image:: https://pypip.in/d/meter_read/badge.png
-        :target: https://crate.io/packages/meter_read?version=latest
-
 
 Read arduino meter data from serial and output to statsd
 

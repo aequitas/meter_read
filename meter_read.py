@@ -11,7 +11,7 @@ Options:
   --dev=dev      Serial device to read [default: /dev/ttyUSB0]
   --addr=addr    Statsd address [default: localhost]
   --port=port    Statsd port [default: 8125]
-  --valid=regex  Regex for valid stat [default: ^([0-9A-F]{1,2}):([^:]+):([0-9\.]+):\\1]
+  --valid=regex  Regex for valid stat [default: ^(?P<start>[0-9A-F]{1,2}):([^:]+):([0-9\\.]+):(?P=start)]
   --timer=regex  Regex for timer stats [default: DS18B20]
   --config=file  Read config file [default: /etc/meter_read.json]
   -h --help      Show this screen.

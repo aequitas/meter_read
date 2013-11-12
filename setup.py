@@ -38,7 +38,7 @@ setup(
     author='Johan Bloemberg',
     author_email='mail@ijohan.nl',
     url='https://github.com/aequitas/meter_read',
-    install_requires=['docopt'],
+    install_requires=['docopt', 'pystatsd'],
     license=read("LICENSE"),
     zip_safe=False,
     keywords='meter_read',

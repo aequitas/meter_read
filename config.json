@@ -1,0 +1,15 @@
+{
+    "--aliasses": {
+        "DS18B20.28BCBA7B3004E": "temps.cv_aanvoer",
+        "DS18B20.2872717B30090": "temps.cv_retour",
+        "DS18B20.28C7A07B300EF": "temps.cv_warmwater",
+        "DS18B20.28B6FDB20042": "temps.kruipruimte",
+        "DS18B20.28203AA130053": "temps.meterkast",
+        "DS18B20.2871AC7B3007B": "temps.vv_aanvoerbalk",
+        "DS18B20.28B2A77B300CD": "temps.vv_aanvoer",
+        "DS18B20.28C0707B30034": "temps.vv_retourbalk",
+        "DS18B20.28DD8E7B30021": "temps.vv_retour",
+        "DS18B20.28F7707B3005C": "temps.woonkamer",
+        "DS18B20.28AF71A13004": "temps.zolder"
+    }    
+}

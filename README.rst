@@ -5,17 +5,9 @@ meter_read
 .. image:: https://travis-ci.org/aequitas/meter_read.png?branch=master
         :target: https://travis-ci.org/aequitas/meter_read
 
-Read arduino meter data from serial and output to statsd
+Reads arduino meter data from serial and output to statsd.
 
-Features
---------
-
-* TODO
-
-Requirements
-------------
-
-- Python >= 2.6 or >= 3.3
+Very simple project to test out cookiecutter template to make a simple cli app.
 
 License
 -------

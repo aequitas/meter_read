@@ -1,5 +1,4 @@
 import sys
-import os
 import subprocess
 
 from setuptools import setup
@@ -25,6 +24,7 @@ if 'run_tests' in sys.argv:
     status = subprocess.call(TEST_CMD, shell=True)
     sys.exit(status)
 
+
 def read(fname):
     with open(fname) as fp:
         content = fp.read()
@@ -32,7 +32,7 @@ def read(fname):
 
 setup(
     name='meter_read',
-    version="0.1.0",
+    version='0.1.2',
     description='Read arduino meter data from serial and output to statsd',
     long_description=read("README.rst"),
     author='Johan Bloemberg',

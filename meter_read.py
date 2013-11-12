@@ -27,12 +27,11 @@ import json
 import logging
 from pystatsd import Client
 
-__version__ = "0.1.0"
+import pkg_resources  # part of setuptools
+__version__ = pkg_resources.require("meter_read")[0].version
 __author__ = "Johan Bloemberg"
 __license__ = "MIT"
 
-logging.basicConfig()
-log = logging.getLogger(__name__)
 
 def merge(dict_1, dict_2):
     """Merge two dictionaries.
@@ -44,23 +43,29 @@ def merge(dict_1, dict_2):
     return dict((str(key), dict_1.get(key) or dict_2.get(key))
                 for key in set(dict_2) | set(dict_1))
 
+
 def main():
     '''Main entry point for the meter_read CLI.'''
     args = docopt(__doc__, version=__version__)
 
+    logging.basicConfig()
+    log = logging.getLogger(__name__)
+
     if args['--verbose']:
-      log.setLevel(logging.DEBUG)
- 
+        log.setLevel(logging.DEBUG)
+
     config_file = args['--config']
     if os.path.exists(config_file):
-      log.debug('reading config file %s' % config_file)
-      with open(config_file) as f:
-        args = merge(args, json.loads(f.read()))
+        log.debug('reading config file %s' % config_file)
+        with open(config_file) as f:
+            args = merge(args, json.loads(f.read()))
 
     sc = Client(args['--addr'], args['--port'])
 
     re_valid = re.compile(args['--valid'])
     re_timer = re.compile(args['--timer'])
+
+    aliasses = args.get('--aliasses', {})
 
     log.debug('start reading %s' % args['--dev'])
     with open(args['--dev'], 'r') as f:

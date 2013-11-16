@@ -22,6 +22,7 @@ Options:
 from __future__ import unicode_literals, print_function
 from docopt import docopt
 import re
+import json
 import logging
 from rcfile import rcfile
 from pystatsd import Client
@@ -34,7 +35,7 @@ __license__ = "MIT"
 
 def main():
     '''Main entry point for the meter_read CLI.'''
-    args = rcfile(__name__, docopt(__doc__, version=__version__))
+    args = rcfile('meter_read', docopt(__doc__, version=__version__))
 
     logging.basicConfig()
     log = logging.getLogger(__name__)
@@ -47,7 +48,9 @@ def main():
     re_valid = re.compile(args['valid'])
     re_timer = re.compile(args['timer'])
 
-    aliasses = args.get('aliasses', {})
+    aliasses = json.loads(args.get('aliasses', '{}'))
+
+    log.debug('found aliasses: %s' % aliasses)
 
     log.debug('start reading %s' % args['dev'])
     with open(args['dev'], 'r') as f:

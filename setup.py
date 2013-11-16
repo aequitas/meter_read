@@ -32,7 +32,7 @@ def read(fname):
 
 setup(
     name='meter_read',
-    version='0.1.2',
+    version='0.1.3',
     description='Read arduino meter data from serial and output to statsd',
     long_description=read("README.rst"),
     author='Johan Bloemberg',

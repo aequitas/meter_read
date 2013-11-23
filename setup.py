@@ -32,13 +32,13 @@ def read(fname):
 
 setup(
     name='meter_read',
-    version='0.1.3',
+    version='0.1.4',
     description='Read arduino meter data from serial and output to statsd',
     long_description=read("README.rst"),
     author='Johan Bloemberg',
     author_email='mail@ijohan.nl',
     url='https://github.com/aequitas/meter_read',
-    install_requires=['docopt', 'pystatsd', 'rcfile'],
+    install_requires=['docopt', 'pystatsd', 'rcfile', 'pyserial'],
     license=read("LICENSE"),
     zip_safe=False,
     keywords='meter_read',

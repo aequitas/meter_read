@@ -9,6 +9,7 @@ Usage:
 
 Options:
   --dev=dev      Serial device to read [default: /dev/ttyUSB0]
+  --baud=baud    Serial device baud rate [default: 19200]
   --addr=addr    Statsd address [default: localhost]
   --port=port    Statsd port [default: 8125]
   --valid=regex  Regex for valid stat [default: ^(?P<start>[0-9A-F]{1,2}):([^:]+):([0-9\\.]+):(?P=start)]
@@ -24,6 +25,8 @@ from docopt import docopt
 import re
 import json
 import logging
+import serial
+
 from rcfile import rcfile
 from pystatsd import Client
 
@@ -53,22 +56,22 @@ def main():
     log.debug('found aliasses: %s' % aliasses)
 
     log.debug('start reading %s' % args['dev'])
-    with open(args['dev'], 'r') as f:
-        while True:
-            line = f.readline()
-            match = re_valid.match(line)
-            if match:
-                check, name, value = match.groups()
-                name = aliasses.get(name, name)
-                log.debug("{0} {1}".format(name, value))
-                # send to statsd
-                if re_timer.match(line):
-                    sc.timing(name, float(value))
-                else:
-                    sc.gauge(name, float(value))
+    s = serial.Serial(port=args['dev'], baudrate=args['baud'])
+    while True:
+        line = s.readline()
+        match = re_valid.match(line)
+        if match:
+            check, name, value = match.groups()
+            name = aliasses.get(name, name)
+            log.debug("{0} {1}".format(name, value))
+            # send to statsd
+            if re_timer.match(line):
+                sc.timing(name, float(value))
             else:
-                log.debug('error %s' % line)
-                sc.increment('error')
+                sc.gauge(name, float(value))
+        else:
+            log.debug('error %s' % unicode(line, errors='ignore'))
+            sc.increment('error')
 
 if __name__ == '__main__':
     main()
